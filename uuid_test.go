@@ -26,6 +26,7 @@ func TestUUID(t *testing.T) {
 		uuid, _ := NewV4()
 		pattern := regexp.MustCompile(`[A-Za-z0-9]{8}\-[A-Za-z0-9]{4}\-[A-Za-z0-9]{4}\-[A-Za-z0-9]{4}\-[A-Za-z0-9]{12}`)
 		got := uuid.String()
+		t.Logf("got %s", got)
 		if !pattern.MatchString(got) {
 			t.Errorf("the string representation of the UUID doesn't match, got: %s", got)
 		}
