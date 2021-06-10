@@ -13,7 +13,7 @@ type UUID [16]byte
 func NewV4() (UUID, error) {
 	var uuid UUID
 	buffer := make([]byte, 16)
-    n, err := io.ReadFull(rand.Reader, buff)
+    n, err := io.ReadFull(rand.Reader, buffer)
     if n != len(uuid) || err != nil {
         return uuid, err // array with nothing useful
     }
@@ -30,5 +30,12 @@ func NewV4() (UUID, error) {
 
 // Now you can fmt.Printf("%s", uuidTypeVar) and get your expected result
 func (u UUID) String() string {
-    return fmt.Sprintf("%x-%x-%x-%x-%x", uuid[0:4], uuid[4:6], uuid[6:8], uuid[8:10], uuid[10:])
+    return fmt.Sprintf(
+		"%x-%x-%x-%x-%x",
+		u[0:4],
+		u[4:6],
+		u[6:8],
+		u[8:10],
+		u[10:],
+	)
 }
